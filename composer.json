@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": ">=2.1",
+        "symfony/config": "^4.4|^5.0|^6.0",
         "twig/twig": "~1.12"
     },
     "target-dir": "Ras/Bundle/FlashAlertBundle/",

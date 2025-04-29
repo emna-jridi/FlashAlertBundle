@@ -10,8 +10,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
  */
-class Configuration implements ConfigurationInterface
-{
+class Configuration implements ConfigurationInterface{
     /**
      * Default alert view template
      */
@@ -20,26 +19,17 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ras_flash_alert');
+        $treeBuilder = new TreeBuilder('ras_flash_alert'); // Add root node name
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
-                ->scalarNode('template')
-                    ->defaultValue(self::DEFAULT_TEMPLATE)
-                    ->end()
-
-                ->booleanNode('isAddStyles')
-                    ->defaultTrue()
-                    ->end()
-
-                ->booleanNode('isAddJsAlertClose')
-                    ->defaultTrue()
-                    ->end()
-            ->end()
-        ;
+                ->scalarNode('template')->defaultValue('RasFlashAlertBundle::flash_alert.html.twig')->end()
+                ->booleanNode('isAddStyles')->defaultTrue()->end()
+                ->booleanNode('isAddJsAlertClose')->defaultTrue()->end()
+            ->end();
 
         return $treeBuilder;
     }
